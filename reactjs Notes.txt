@@ -1,0 +1,92 @@
+Para escribir un if en un {} de JSX:
+{isNameShown ? name : "someone"}
+	-In this example isNameShown is a boolean.
+
+	This is my first "practice":
+
+import logo from './logo.svg';
+import './App.css';
+
+// This is a personalized component that I made :D
+// Only the person part
+
+function Person(props) {
+  //Props allows you to insert custome data into this function
+  return(
+    <>
+        <h1>Name: {props.name}</h1>
+        <h2>Last Name: {props.lastName}</h2>
+        <h2>Age: {props.age}</h2>
+    </>
+  )
+}
+
+function App() {
+  const name="Client";
+  const isNameShown=false;
+  return (
+    <div className='App'>
+        <h1>Hello, {isNameShown ? name : "someone"}!</h1>
+
+        {/* This is kind of an "if" statement
+        It checks if the variable name isn't null */}
+        {name ?(
+          <>
+            <h1>{name}</h1>
+          </>
+        ):(
+          <>
+            <h1>Test</h1>
+            <h2>There is no name</h2>
+          </>
+        )}
+
+        {/* This part returns everything in the other function */}
+        <Person name="Bobby" lastName="Hillfiger" age="27" />
+        <Person 
+        name="Janet" 
+        lastName="Anniston" 
+        age={20+15} />
+    </div>
+  );
+}
+
+SECOND PRACTICE:
+
+import logo from './logo.svg';
+import './App.css';
+
+//This import is for importing the states
+import { useState, useEffect } from 'react';
+
+function App() {
+  //Here we create the state
+  //States help you alter information dynamicly
+  const [counter,setCounter]= useState(0);
+  
+  //Use effect only happens when the component is rendered (when the page is reloaded).
+  //For it to only load once the "[]" at the end must be empty.
+  //If you put a variable there, it will occur every time the variable is updated.
+
+  useEffect(()=>{
+    alert("You have updated the counter to "+ counter)
+  }, [counter])
+  return (
+    <div className='App'>
+        {/* This is how we set up an event on a button. */}
+        {/* The "prevCount" gets the previus value. Btw prevCount could be name whatever, but it's recommended it starts with prev */}
+        <button onClick={()=> setCounter((prevCount)=>prevCount-1)}>-</button>
+        <h1>{counter}</h1>
+        <button onClick={()=> setCounter((prevCount)=>prevCount+1)}>+</button>
+    </div>
+  );
+}
+
+´ ´ ´´´´´´´´
+
+
+
+
+
+
+export default App;
